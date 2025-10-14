@@ -1,90 +1,392 @@
-{
-  "The Magician": {
-    "meaning": "The First Arcanum signifies that which initiates, that which starts, that which is sown, that which begins. Every beginning is difficult. One has to work hard, because one has to sow in order to reap. This arcanum gives aptitude in order to resolve problems. It grants power as much for awakening as for dominating passions in the physical world.",
-    "forecasting": "It promises dominion of material obstacles, new social relations, happy initiatives, the concourse of loyal friends who aid the development of projects, and jealous friends who obstruct it."
+[
+  {
+    "title": "The Magician",
+    "meaning": "Initiation, beginnings, creative willpower, mastery of material obstacles.",
+    "forecast": "Success comes with struggle; promises dominion over obstacles, new social relations, happy initiatives, supportive and jealous friends."
   },
-  "The Priestess": {
-    "meaning": "By means of the Second Arcanum, the matrix where all the images take form is made, is modelled. The Second Arcanum is the thesis that plans the antithesis. It is the fountain that accumulates the waters from the water-source. It is the dual manifestation of the unity. By unfolding itself, the unity gives origin to the productive and receptive femininity in all of nature.",
-    "forecasting": "Attractions and repulsions, loss and profit, ascensions and descents; favorable inspirations to the initiative and the secret opposition from secondary ones who try to stop that initiative going towards a good goal."
+  {
+    "title": "The Priestess",
+    "meaning": "Intuition, receptivity, the matrix where ideas take form, duality in creation.",
+    "forecast": "Attractions and repulsions, gains and losses, favorable inspiration and subtle opposition to initiatives."
   },
-  "The Empress": {
-    "meaning": "It is stated that the Third Arcanum is the mold maker. It is clear that within creation, within nature, everything is modelled by means of the Verb. The Third Arcanum signifies success. It is material and spiritual production.",
-    "forecasting": "Multiplication of material goods, prosperity in business, abundance, wealth, success; obstacles which must be defeated, and satisfaction in proportion to efforts made while we are defeating them."
+  {
+    "title": "The Empress",
+    "meaning": "Material and spiritual production, creativity, abundance.",
+    "forecast": "Multiplication of goods, business prosperity, abundance, obstacles to overcome, satisfaction from effort."
   },
-  "The Emperor": {
-    "meaning": "Within the Fourth Arcanum, there are four concordances. These are affirmation, negation, discussion, and seduction.",
-    "forecasting": "Guarantees material gains, having the basis for higher enterprises, favorable results on spent efforts and troubled conditions in order to achieve them; friends are simultaneously a help and obstacle. Fate is proper and adverse at the same time."
+  {
+    "title": "The Emperor",
+    "meaning": "Order, authority, foundation, controlled effort, reason.",
+    "forecast": "Guarantees material gains, foundation for higher undertakings, favorable results from effort, help and obstacles from friends, mixed fortunes."
   },
-  "The Hierarch": {
-    "meaning": "The Fifth Arcanum is indication, demonstration, teaching, karmic law, philosophy, science, art. It is the law, severity.",
-    "forecasting": "Freedom and restrictions, new experiences, acquisition of advantageous teachings, love and love affairs, journeys of frustrated prosperity. Propitious friends and friends who are of a sinister augury; beings and things that come and go, those who come in order to leave, those who go in order to return."
+  {
+    "title": "The Hierarch (Hierophant)",
+    "meaning": "Law, teaching, karmic guidance, philosophical instruction, severity.",
+    "forecast": "Freedom and restriction, new experiences, advantageous teachings, love affairs, journeys with frustrated prosperity, helpful and hostile friends, arrivals and departures."
   },
-  "Indecision": {
-    "meaning": "The Sixth Arcanum is the Lover, enchainment, equilibrium, struggle between love and desire. Amorous union of man and woman, linking. It is the supreme affirmation of the internal Christ, and the supreme negation of the demon.",
-    "forecasting": "Privilege and obligations in the relations of sexes. Antagonism of forces. Separations and divorces. Possession of that which is pursued and ardent desires which are fulfilled, where some of them satisfy and others disappoint."
+  {
+    "title": "Indecision (The Lovers)",
+    "meaning": "Choice and struggle between desire and love, equilibrium, union, ultimate affirmation or negation.",
+    "forecast": "Relationships face privileges and obligations, antagonism, separations, fulfilled and disappointing desires."
   },
-  "Triumph": {
-    "meaning": "The Seventh Arcanum is struggle, battle, difficulties. The warrior must learn how to use the staff and the sword, thus he will attain the great victory. Our motto is Thelema (willpower).",
-    "forecasting": "Guarantees magnetic power, well-aimed intellection (union of intellect and intuition); justice and reparations, honor and dishonour, achievement of that which is pursued with determination, satisfactions and disappointments."
+  {
+    "title": "Triumph (The Chariot)",
+    "meaning": "Struggle, battle, difficulties, victory through willpower and union of mind and intuition.",
+    "forecast": "Magnetic power, justice, honor and dishonor, successful pursuit, satisfactions and disappointments."
   },
-  "Justice": {
-    "meaning": "The Eighth Arcanum signifies strong ordeals; it is rectitude, justice, equilibrium. One must seek for performing good deeds at any cost, because the masters of medicine, when in regards to someone who is sick and is dying, always intend to save that person because this is the law. They accomplish the duty of performing good deeds.",
-    "forecasting": "Guarantees retributions, punishments and rewards, gratitudes and ungratefulness, compensations for given services."
+  {
+    "title": "Justice",
+    "meaning": "Ordeals, justice, moral balance, performing good deeds.",
+    "forecast": "Justice, punishments and rewards, gratitude and ingratitude, compensation for services rendered."
   },
-  "The Hermit": {
-    "meaning": "The Ninth Arcanum is the prudent and wise Hermit. It is solitude. There is great pain. In the Ninth Sphere is supreme pain, as Dante states in The Divine Comedy. We have to learn how to understand, we have to learn how to suffer, how to be resigned. Those who are not, fail.",
-    "forecasting": "It guarantees science in order for the making of discoveries; a method for when making them; caution when being served by them; advantageous associations and conceited associations; friends who help and who obstruct; light of reason and light of intuition, the first light for the immediate and the second light for that which will be."
+  {
+    "title": "The Hermit",
+    "meaning": "Prudence, wisdom from solitude, resignation through suffering.",
+    "forecast": "Scientific discovery methods, beneficial associations, caution, help and obstacles from friends, insight for present and future."
   },
-  "Retribution": {
-    "meaning": "From the esoteric point of view, the Tenth Arcanum is really transcendental. The circle with the point in the center is a complete phallic symbol. When the point is extended, it is converted into a line, the lingam. If the line is placed to the left of the circle, it is the number 10. All of the secrets of lingam-yoni are found within this number, as well as the laws of irradiation and absorption.",
-    "forecasting": "Guarantees good and bad fortune, elevation and descents, legitimate possessions and doubtful possessions; recommendations of past contingencies and circumstances which are repeated in a distinct way."
+  {
+    "title": "Retribution (Wheel of Fortune)",
+    "meaning": "Cycles and recurrence, the wheel of karma and fate, the repetition of past dramas.",
+    "forecast": "Good and bad fortune, rises and falls, possessive gain and loss, repetition of old circumstances with new results."
   },
-  "Persuasion": {
-    "meaning": "The Eleventh Arcanum is the work with the fire, with the force of love. Persuasion, in itself, is a force of a subtle spiritual order. Occult wisdom states: 'Vivify the flame of the Spirit with the force of love.'",
-    "forecasting": "Guarantees control of the direction which is followed that leads towards the dominion of the elements; vitality, rejuvenation, acquisition, and loss of friends because of family matters; pains, obstacles, jealousy, treason and resignation in order to bear the disappointments."
+  {
+    "title": "Persuasion",
+    "meaning": "Spiritual force rooted in love; gentle persuasion is more effective than violence.",
+    "forecast": "Ability to direct life wisely, regain vitality, face obstacles, jealousy, betrayal, pain, and resignation over disappointments."
   },
-  "The Apostolate": {
-    "meaning": "The Twelfth Arcanum implies sacrifices, sufferings; it is the card of the Apostolate. The Twelfth Arcanum brings many sufferings, many struggles.",
-    "forecasting": "Guarantees contrarieties, anguish, downfalls; material loss in some conditions of life and profit in others; presentiments which enliven and presentiments which discourage."
+  {
+    "title": "The Apostolate",
+    "meaning": "Sacrifice, suffering, and enduring struggles with social and spiritual significance.",
+    "forecast": "Contradictory experiences, anguish, material loss and gain, encouraging or discouraging premonitions."
   },
-  "Immortality": {
-    "meaning": "The Thirteenth Arcanum is death, but also can signify something new, it can be wealth; it can be misery. It is a number with a great synthesis.",
-    "forecasting": "Guarantees disappointments, disillusions, death of affections, refusals for that which is solicited, collapse, pure enjoyments and gladness for the soul, improvements with painful enjoyment, help of friends; renewal of conditions, the good ones for the worse and the bad ones for the better."
+  {
+    "title": "Immortality",
+    "meaning": "Death and rebirth, transformation, endings that lead to new beginnings.",
+    "forecast": "Disappointments, loss of love, refusals, collapse, renewal, pleasurable or painful improvements, and help from friends."
   },
-  "Temperance": {
-    "meaning": "The Fourteenth Arcanum is chastity, transmutations, the waters. One has to work hard by chiselling the stone, without which the sexual transmutation cannot be achieved.",
-    "forecasting": "Predicts enmities, reciprocal affections, obligations, combinations, chemical combinations, and combining of interests; afflicted loves, devoted loves, betrayed loves; things that remain and things that depart, the first are in order to leave, the second are in order to return."
+  {
+    "title": "Temperance",
+    "meaning": "Chastity and moderation; working towards purity and balanced transformation.",
+    "forecast": "Reciprocal affection, combining interests, betrayed love, loyal love, departures and returns within relationships."
   },
-  "Passion": {
-    "meaning": "The Fifteenth Arcanum is the pluralized 'I,' which esoterically is called Satan. The Fifteenth Arcanum represents passion, which is based in the Luciferic fire.",
-    "forecasting": "It predicts controversies, passions, fatalities; prosperity through legality and fatality; noxious affections for the one who feels them, and for the one who is affected by them; vehement anxiety and violent situations."
+  {
+    "title": "Passion",
+    "meaning": "Sexual desire, lust, and the struggle between liberation and bondage through passion.",
+    "forecast": "Passion-driven controversies, anxieties, violence, prosperity, legality, fatal and noxious affections, and overwhelming anxiety."
   },
-  "Fragility": {
-    "meaning": "The Sixteenth Arcanum is very dangerous. It is necessary to awaken the consciousness in order to not walk blindly. The blind ones can fall into the abyss.",
-    "forecasting": "Predicts unexpected accidents, tempests, commotions, deaths; benefits because of concepts from good and bad circumstances; reciprocity in love and hatred, in indifference and in zeal, in treason and in loyalty."
+  {
+    "title": "Fragility",
+    "meaning": "Danger and risk of falling; leaving paradise and facing consequences by not awakening.",
+    "forecast": "Unexpected accidents, commotions, death, benefit or harm from reciprocity, love and hate, loyalty and betrayal."
   },
-  "Hope": {
-    "meaning": "The star of eight points always represents Venus, the star of dawn. We find the Venustic Initiation within the Seventeenth Arcanum.",
-    "forecasting": "It predicts Intuition, support, illumination, births, brief afflictions and brief satisfactions, displeasures and reconciliations, privations; abandonments and benefits."
+  {
+    "title": "Hope",
+    "meaning": "Star of hope and dawn; intuition, illumination, and positive support on the spiritual path.",
+    "forecast": "Hopefulness, support in intuition, relief from affliction, reconciliation, privations, abandonment and benefits."
   },
-  "Twilight": {
-    "meaning": "The Kabbalistic synthesis of the Arcanum Eighteen is 1 + 8 = 9, the Ninth Sphere, sex. If we add 9 + 9 = 18, there is a balance found in it.",
-    "forecasting": "It predicts instability, inconstancy, ambush, confusion, changes, uncertain situations, long deliberations, unexpected impediments, tardy results, apparent triumphs and failings."
+  {
+    "title": "Twilight",
+    "meaning": "Dangers of initiation, occult enemies, temptation, and trials on a difficult path.",
+    "forecast": "Instability, confusion, changes, ambush, long deliberations, unexpected impediments, delayed results, triumphs, and failures."
   },
-  "Inspiration": {
-    "meaning": "In the Kabbalah of prediction, the Nineteenth Arcanum predicts total victory, whether by personal effort or with the help of others.",
-    "forecasting": "It predicts the increment of power, success in determination, joy in the acts that are performed, benefits for the concept of personal efforts and efforts of others, inheritances, clarity in that which is desired and fire that consumes the desired."
+  {
+    "title": "Inspiration",
+    "meaning": "Victory and success through spiritual and personal efforts; alliance of complementary souls.",
+    "forecast": "Increased power, success due to determination, joy, benefits from effort, inheritance, fulfillment, and dissolution of over-desire."
   },
-  "Resurrection": {
-    "meaning": "The Twentieth Arcanum is the resurrection of the dead. Really, the resurrection of the soul is only possible through cosmic initiation.",
-    "forecasting": "It predicts harmonious choices, fortunate initiatives, labor, profit. Compensations because of good and because of bad. Loyal friends that annul the action of traitorous friends. Jealousy for the good that is enjoyed. Afflictions because of loss."
+  {
+    "title": "Resurrection",
+    "meaning": "Spiritual resurrection, awakening through cosmic or initiatic transformation.",
+    "forecast": "Fortunate choices, harmonious initiatives, labor, profit, compensation, friends who prevent betrayal and affliction at loss."
   },
-  "Transmutation": {
-    "meaning": "The Twenty-first Arcanum can be represented with the inverted pentagonal star which represents black magic. The Twenty-first Arcanum is calamity, insensateness, the Fool of the Tarot.",
-    "forecasting": "It predicts exclusion from something that is enjoyed, frustration when trying to achieve what is wanted. Ruin in relation to that which we boast of. It is danger of isolation, perfidious gifts, deceitful promises, disillusions; the end of some things and the beginning of others."
+  {
+    "title": "Transmutation",
+    "meaning": "Calamity, foolishness, loss of control; the danger of failing in self-realization.",
+    "forecast": "Exclusion from enjoyment, frustration, isolation, ruin in what is boasted, deceitful gifts and promises, end of some things and beginning of others."
   },
-  "The Return": {
-    "meaning": "The Twenty-second Arcanum is the Crown of Life, the return to Light, the incarnation of the Truth within us.",
-    "forecasting": "Predicts longevity, inheritances, notability, delight of honest enjoyments, rivals that dispute the affections, friends that care for us, obstacles and aptitude in order to defeat them, uncertain situations and contingencies that clarify them."
+  {
+    "title": "The Return",
+    "meaning": "The Crown of Life, return to Light, incarnation of Truth; synthesis of man, woman, fire, and water.",
+    "forecast": "Longevity, inheritances, notable achievements, enjoyment, rivalries, caring friends, obstacles and ability to defeat them, clarifying contingencies."
+  },
+  {
+    "title": "The Plower",
+    "meaning": "Cultivation of earth and consciousness, self-realization through effort and experience.",
+    "forecast": "Powerful friends, need for their help, ability to attain by faith, elevation by means of friends and one's own willpower."
+  },
+  {
+    "title": "The Weaver",
+    "meaning": "Domestic virtue, diligent guardianship of home and honor; practical diligence.",
+    "forecast": "Organized economy, chastity in maternity, female protection and successful fulfillment of duties."
+  },
+  {
+    "title": "The Argonaut",
+    "meaning": "Sailing into the unknown, inspiration and valiant pursuit of new horizons.",
+    "forecast": "Absences, emigration, abandonment, changes, domestic discord, gain and notable loss."
+  },
+  {
+    "title": "The Prodigy",
+    "meaning": "Consummation, creation of astounding feats, pursuit of the marvelous and miraculous.",
+    "forecast": "Fulfilling episodes, threatening dangers, surprising events, teachings unthought of."
+  },
+  {
+    "title": "The Unexpected",
+    "meaning": "Manifestation of the unexpected; subconscious processes determining outcomes.",
+    "forecast": "Conditioned triumphs, surprises, conjurations, treasons, findings, discoveries – some delayed."
+  },
+  {
+    "title": "Uncertainty",
+    "meaning": "Deliberation, the virtue of human judgment and determination.",
+    "forecast": "Delays, obstacles, enigmas, mysteries to be solved, science as a tool for resolutions."
+  },
+  {
+    "title": "Domesticity",
+    "meaning": "Concord, dominance by persuasion, peace and equilibrium, pastoral joy.",
+    "forecast": "Remorse, indecision, perplexity, timidity, advantageous affairs, enterprises with struggles but satisfactory results."
+  },
+  {
+    "title": "Exchange",
+    "meaning": "Reciprocal convenience, social virtues, life in society and communication.",
+    "forecast": "Active social life, commerce, variety, discussion, intercommunications, often without resolution."
+  },
+  {
+    "title": "Impediments",
+    "meaning": "Obstacles and restrictions which serve as incentives to develop your own efficiency.",
+    "forecast": "Expectations, domestic adjustments, inferior trading quality, limitations, positions not always beneficial for all involved."
+  },
+  {
+    "title": "Magnificence",
+    "meaning": "Material display and evidence of personal value, ostentation may provoke conflict.",
+    "forecast": "Risks of excess, dangers from luxury, litigation, triumph or failure, opposition or cooperation from equals."
+  },
+  {
+    "title": "Alliance",
+    "meaning": "Communion and alliance between equals, affinity through shared identity and realization.",
+    "forecast": "Precise dealings, lasting partnerships, prosperity, progress, and fortunate developments."
+  },
+  {
+    "title": "Innovation",
+    "meaning": "Newness and innovation by unwavering effort, self-inspiration guides evolution.",
+    "forecast": "Novel inventions, new ventures, temptations, discoveries—some fortunate, others disconcerting."
+  },
+  {
+    "title": "Grief",
+    "meaning": "Moral affliction and tribulation, learning from insufficiency and evoking purification.",
+    "forecast": "Alarm, melancholy, sadness, unexpected events, and obstacles which must be overcome."
+  },
+  {
+    "title": "Initiation",
+    "meaning": "Revivification of innate powers, progressive actualization, and new beginnings.",
+    "forecast": "Births, new ventures, forthcoming prosperity, both success and decline may occur."
+  },
+  {
+    "title": "Art and Science",
+    "meaning": "Individual evolution through discipline and creative knowledge.",
+    "forecast": "Sincere friendship, aids, popularity, but also compulsions and perversions, not always edifying results."
+  },
+  {
+    "title": "Biplicity",
+    "meaning": "Wisdom in duality, voluntary knowledge through selection and comparison.",
+    "forecast": "Influence of women, virtue and scandal, chastity may confront corruption, honesty with vice."
+  },
+  {
+    "title": "Testimony",
+    "meaning": "Irrefutable evidence and proof through verification.",
+    "forecast": "Approximations, banquets, travel, delayed marriages, adultery, arrivals both foreseen and unforeseen."
+  },
+  {
+    "title": "Presentiment",
+    "meaning": "Instinctual foreknowledge, anticipation of what shall transpire.",
+    "forecast": "Retribution at work, attraction, sympathy, seduction, ruin, or mortifying affections may occur."
+  },
+  {
+    "title": "Uneasiness",
+    "meaning": "Disheartened attitude, seeking for the best, urban restlessness.",
+    "forecast": "Indignation, violence, group agitation, big families, crushes, joy with contradictions."
+  },
+  {
+    "title": "Preeminence",
+    "meaning": "Superiority, acknowledgment of hierarchy, voluntary obedience to rank.",
+    "forecast": "Advantages, triumph, pride, sincerity, surprising romantic encounters."
+  },
+  {
+    "title": "Imagination",
+    "meaning": "Expression of contentment, creative joy and celebration.",
+    "forecast": "Satisfaction, modest pleasures, parties, beneficial partnerships, risky and forbidden loves, prosperous business."
+  },
+  {
+    "title": "Thought",
+    "meaning": "Creative shaping of ideas into reality, self-edification.",
+    "forecast": "Projects, resolutions, mutual fulfillment of desire through effort, sometimes requiring help from the opposite sex."
+  },
+  {
+    "title": "Regeneration",
+    "meaning": "Remembrance, spiritual/physical renewal, visualization for the future.",
+    "forecast": "Rejuvenation, reconsideration, childhood and age influences, family impact on love, breakups, abandonments."
+  },
+  {
+    "title": "Patrimony",
+    "meaning": "Continuity, generational possession, inheritance.",
+    "forecast": "Friendship bequests, inheritances, donations, family traditions, conjugal harmony or risk from seduction."
+  },
+  {
+    "title": "Deduction",
+    "meaning": "Knowledge by personal inspiration, illumination, and hope.",
+    "forecast": "New understandings, spiritual afflictions, mature hopes, future joys or sorrows, virtuous and lasting loves."
+  },
+  {
+    "title": "Consummation",
+    "meaning": "Conviction, completion, plenitude of personal realization.",
+    "forecast": "Achievements, conclusions, victories, impossible or fated loves, definitive outcomes."
+  },
+  {
+    "title": "Versatility",
+    "meaning": "Reciprocity, adaptability, prosperity through change.",
+    "forecast": "Relocation, new relationships, rivalry, varieties of experiences, some leading to improvement."
+  },
+  {
+    "title": "Affinity",
+    "meaning": "Personal charm, efficient emotional awakenings, natural incentives.",
+    "forecast": "Illusions, desires, passions, love, appetites, reckless actions or ignored risks."
+  },
+  {
+    "title": "Counseling",
+    "meaning": "Prudent advice, wisdom, reverence to knowledge, responsibility for what you know.",
+    "forecast": "Judgement, relations with authorities, judicial matters, danger from perfidious enemies in powerful positions, fortune or peril in fields of justice or weapons."
+  },
+  {
+    "title": "Premeditation",
+    "meaning": "Calculation, planning, anticipation of desired results.",
+    "forecast": "Artifice, simulation, malice, dissimulation, sterility, poverty, feminine rivalry with resultant quarrels."
+  },
+  {
+    "title": "Resentment",
+    "meaning": "Self-defense, wounded heart, reprisal, personal protection.",
+    "forecast": "Vengeance, imprudence, ineptitude, attacks and defense, criticism, calumny, risk of fire, conflict with status-holders."
+  },
+  {
+    "title": "Examination",
+    "meaning": "Deliberation with justice, making decisions after analysis.",
+    "forecast": "Speculation, inquiry, imputations, betrayal, occult enemies, defamation."
+  },
+  {
+    "title": "Contrition",
+    "meaning": "Repentance, voluntary repair, recognition of error.",
+    "forecast": "Lamentation, sorrow, spiritual affliction, unpleasant success, material gain through moral suffering."
+  },
+  {
+    "title": "Pilgrimage",
+    "meaning": "Interior purification, affliction, search for redemption.",
+    "forecast": "Celibacy, shy obstacles, matters relating to sanctuaries, suffering, mysterious dangers, rivalry among the powerful."
+  },
+  {
+    "title": "Rivalry",
+    "meaning": "Competition, proof among opponents, skill and self-esteem.",
+    "forecast": "Critical situations, opposition, fatal conjunctions, debates, destiny fulfillment, criticism."
+  },
+  {
+    "title": "Requalification",
+    "meaning": "Reconsideration, evaluation of situations and opposites, revised judgment.",
+    "forecast": "Warning of danger, timely observation, pretensions without merit, lost opportunities, desire and courage for endurance."
+  },
+  {
+    "title": "Revelation",
+    "meaning": "Revelation, unveiling the hidden, making the unintelligible clear.",
+    "forecast": "Declarations, messages, messenger, contradictory news, travel, adversity, loquacity, exposure of secrets."
+  },
+  {
+    "title": "Evolution",
+    "meaning": "Change, transformative evolution, awakening of consciousness.",
+    "forecast": "Decline, fortune setback, dying affections, burial, danger of ruin due to fixed ideas, adverse change, painful events."
+  },
+  {
+    "title": "Solitude",
+    "meaning": "Interior contemplation, voluntary or unavoidable withdrawal from social life, concentration.",
+    "forecast": "Reserve, precaution, retirement, vigilance, economy, inability or retreat from public affairs, good conduct."
+  },
+  {
+    "title": "Proscription",
+    "meaning": "Dispersion, opposition, pushing away or avoiding what is harmful or incompatible.",
+    "forecast": "Ruptures, divisions, reclusion, absence, aversions, controversies, embarrassing undertakings."
+  },
+  {
+    "title": "Communion",
+    "meaning": "Partnership, sharing, unity within diversity, mutual protection.",
+    "forecast": "Affection, tenderness, affinity, correspondences, mutual protection, unity in ideals and struggles."
+  },
+  {
+    "title": "Zeal",
+    "meaning": "Exalted and passionate expression, fervor, longing, inner fire.",
+    "forecast": "Extreme passion, strong temper, animosity, struggles and conquests for success, gain in love affairs."
+  },
+  {
+    "title": "Learning",
+    "meaning": "Knowledge and discipline, teachings and warnings, internal and external learning.",
+    "forecast": "Benefit from teachings, protection from elders, more joy for the future than the present, both ascension and descent."
+  },
+  {
+    "title": "Perplexity",
+    "meaning": "Indecision, need for wise selection, perplexity in decision-making.",
+    "forecast": "Vacillation, matters in suspense, ambiguous protection, mixed fortune, hope in most conditions."
+  },
+  {
+    "title": "Friendship",
+    "meaning": "Devotion, affection, veneration, pure love and support.",
+    "forecast": "Profit by duty, tranquility of spirit, unexpected support, triumph over hardship, helpful friends."
+  },
+  {
+    "title": "Speculation",
+    "meaning": "Reasoning, beneficial learning, diligent analysis to achieve value.",
+    "forecast": "Profitable labor, abundance, prosperity, generosity, favorable news or successful plans."
+  },
+  {
+    "title": "Chance",
+    "meaning": "Instinct-guided transcendental knowledge, trusting in fortune.",
+    "forecast": "Compensation, satisfactory change, good luck, fulfillment of wishes, advancement by opportunity."
+  },
+  {
+    "title": "Cooperation",
+    "meaning": "Collaboration, reciprocity, knowing how to complement each other's efforts.",
+    "forecast": "Mutual support, shared success, and harmonious teamwork."
+  },
+  {
+    "title": "Avarice",
+    "meaning": "Greed, selfishness, desire for power at the expense of others.",
+    "forecast": "Usury, egotistical plans leading to remorse, great hopes but small results, danger of robbery, difficulty in preserving status."
+  },
+  {
+    "title": "Purification",
+    "meaning": "Self-edification, liberation through disciplined purification effort.",
+    "forecast": "Ingenuousness, vexation of spirit, illuminating effort, fortune through hard work, satisfying acquisitions and news."
+  },
+  {
+    "title": "Love and Desire",
+    "meaning": "Natural stimuli, passion, attractions, delights and ambitions.",
+    "forecast": "Illusions, ardent passions, ambitious hope, unexpected gains with risk from false friends."
+  },
+  {
+    "title": "Offering",
+    "meaning": "Propitiation, reverence, rendering cult to the highest.",
+    "forecast": "Devotion, adoration, inspiration, harmony and discord, variable initiatives, achievements more dissipating than edifying."
+  },
+  {
+    "title": "Generosity",
+    "meaning": "Liberality, high-mindedness, true giving and abnegation.",
+    "forecast": "Alms, satisfactory rewards, inheritance, acquisition of stable fortune, pleasant returns."
+  },
+  {
+    "title": "The Dispenser",
+    "meaning": "Distribution of grace, mercy, providence.",
+    "forecast": "Noble consideration, importance, fame, generosity, fortune through enterprise, labor and genius made useful."
+  },
+  {
+    "title": "Disorientation",
+    "meaning": "Forbearance, acknowledgment, reflection, confusion or perplexity.",
+    "forecast": "Embarrassing situations, confusion, unexpected obstacles, probabilities of good and bad fortune, dependent on personal inspiration."
+  },
+  {
+    "title": "Renaissance",
+    "meaning": "Initiation, successive pre-eminences, natural evolution.",
+    "forecast": "Ecstasies, pure joy, satisfaction, contentment, luck, and honors in both moral and material domains."
   }
-}
+]
