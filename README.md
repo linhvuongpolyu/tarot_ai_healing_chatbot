@@ -19,12 +19,9 @@ A Streamlit app that offers a gentle, reflective conversation experience and opt
   <br/>
   <br/>
 
-  <!-- Clickable GIF preview with JPG fallback (GIF optional) -->
+  <!-- Clickable GIF preview (links to MP4) -->
   <a href="./Demo Video.mp4">
-    <picture>
-      <source srcset="./Demo-Preview.gif" type="image/gif" />
-      <img src="./Tarot AI Healing Chatbot.jpg" alt="Demo preview (click to watch)" width="720" />
-    </picture>
+    <img src="./Draw Cards.gif" alt="Demo preview (click to watch)" width="720" />
   </a>
 
 </div>
