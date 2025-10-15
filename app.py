@@ -73,62 +73,91 @@ CARD_IMAGES_PATH = "D:\\MScIME\\SD5913 - Creative Programming for Designers and 
 MUSIC_FILE_PATH = "please-calm-my-mind-125566.mp3" 
 
 # Music (looping via custom HTML audio) - small corner player
-if os.path.exists(MUSIC_FILE_PATH):
-    audio_bytes = open(MUSIC_FILE_PATH, 'rb').read()
-    audio_b64 = base64.b64encode(audio_bytes).decode()
-    audio_html = f"""
-        <style>
-            /* AUDIO WIDGET */
-            .corner-audio-wrapper {{
-                    position: fixed; top: 10px; left: 12px; z-index: 1200;
-                    display:flex;align-items:center;gap:6px;
-                    background: rgba(255,255,255,0.28); backdrop-filter: blur(10px) saturate(1.4);
-                    padding: 6px 10px 6px 10px; border-radius: 14px; border:1px solid rgba(255,255,255,0.55);
-                    box-shadow: 0 6px 18px -6px rgba(0,0,0,0.35);
-                    font-size: 0.62rem; line-height:1.1; color:#222; user-select:none;
+try:
+    if os.path.exists(MUSIC_FILE_PATH):
+        with open(MUSIC_FILE_PATH, 'rb') as f:
+            audio_bytes = f.read()
+        audio_b64 = base64.b64encode(audio_bytes).decode()
+    else:
+        st.warning(f"Music file not found: {MUSIC_FILE_PATH}")
+        audio_b64 = ""
+except Exception as e:
+    st.error(f"Error loading music: {e}")
+    audio_b64 = ""
+
+# Create the audio HTML structure
+audio_html = f"""
+    <style>
+        /* AUDIO WIDGET */
+        .corner-audio-wrapper {{
+            position: fixed; top: 10px; left: 12px; z-index: 1200;
+            display:flex;align-items:center;gap:6px;
+            background: rgba(255,255,255,0.28); backdrop-filter: blur(10px) saturate(1.4);
+            padding: 6px 10px 6px 10px; border-radius: 14px; border:1px solid rgba(255,255,255,0.55);
+            box-shadow: 0 6px 18px -6px rgba(0,0,0,0.35);
+            font-size: 0.62rem; line-height:1.1; color:#222; user-select:none;
+        }}
+        .corner-audio-wrapper:hover {{ transform: translateY(-2px); transition:transform .35s ease; }}
+        .corner-audio-wrapper .label {{ font-family:'Cormorant Garamond',serif; letter-spacing:.5px; opacity:.85; }}
+        .corner-audio-wrapper audio {{ width:150px; height:22px; outline:none; }}
+        @media (max-width:680px){{ .corner-audio-wrapper {{ top:6px; left:6px; padding:5px 8px; }} .corner-audio-wrapper audio {{ width:130px; }} }}
+            /* TRANSPARENT BOTTOM BAR */
+            div[data-testid="stChatInput"] {{ background:transparent !important; box-shadow:none !important; padding-top:12px; }}
+        div[data-testid="stChatInput"] > label {{ display:none !important; }}
+        /* hide extra blank space container if any */
+            div[data-testid="stBottomBlockContainer"], footer, .stFooter {{ background:transparent !important; box-shadow:none !important; }}
+           /* New: aggressively target potential white spacer wrappers */
+        .st-emotion-cache-13ln4jf, .st-emotion-cache-1y4p8pa, .st-emotion-cache-ue6h4q, .st-emotion-cache-1avcm0n, .st-emotion-cache-12fmjuu {{
+            background:transparent !important; box-shadow:none !important;
+        }}
+           /* Remove default padding that might show white */
+            div.block-container {{ padding-bottom: 0.5rem !important; }}
+           /* Chat input internal container adjustments */
+            div[data-testid="stChatInput"] > div:first-child {{ background:transparent !important; }}
+            /* Remove residual border or outline from the wrapper */
+            div[data-testid="stChatInput"] div[role="textbox"] {{ background:transparent !important; }}
+        /* Input styling */
+        div[data-testid="stChatInput"] textarea {{
+                background: rgba(255,255,255,0.32) !important; backdrop-filter: blur(14px) saturate(1.4);
+                border:1px solid rgba(255,255,255,0.55) !important; border-radius:32px !important; padding:10px 16px !important; font-size:0.95rem;
+        }}
+        div[data-testid="stChatInput"] textarea:focus-visible {{ outline:2px solid rgba(255,255,255,0.75) !important; }}
+    </style>
+"""
+
+# Add the audio player HTML only if we have audio content
+if audio_b64:
+    audio_html += f"""
+    <div class="corner-audio-wrapper">
+        <span class="label">Calming ambience</span>
+        <audio id="bg-music" src="data:audio/mp3;base64,{audio_b64}" autoplay loop controls></audio>
+        <span id="audio-fallback-msg" style="display:none;font-style:italic;font-size:0.55rem;color:#333;">Tap play</span>
+    </div>
+    <script>
+        (function(){{
+            const audioEl=document.getElementById('bg-music');
+            const msgEl=document.getElementById('audio-fallback-msg');
+            if(!audioEl) return; 
+            audioEl.volume=0.55; 
+            let tried=false;
+            function attempt(){{ 
+                if(tried) return; 
+                tried=true; 
+                const p=audioEl.play(); 
+                if(p&&p.then) p.catch(()=> msgEl.style.display='inline'); 
             }}
-            .corner-audio-wrapper:hover {{ transform: translateY(-2px); transition:transform .35s ease; }}
-            .corner-audio-wrapper .label {{ font-family:'Cormorant Garamond',serif; letter-spacing:.5px; opacity:.85; }}
-            .corner-audio-wrapper audio {{ width:150px; height:22px; outline:none; }}
-            @media (max-width:680px){{ .corner-audio-wrapper {{ top:6px; left:6px; padding:5px 8px; }} .corner-audio-wrapper audio {{ width:130px; }} }}
-                /* TRANSPARENT BOTTOM BAR */
-                div[data-testid="stChatInput"] {{ background:transparent !important; box-shadow:none !important; padding-top:12px; }}
-            div[data-testid="stChatInput"] > label {{ display:none !important; }}
-            /* hide extra blank space container if any */
-                div[data-testid="stBottomBlockContainer"], footer, .stFooter {{ background:transparent !important; box-shadow:none !important; }}
-               /* New: aggressively target potential white spacer wrappers */
-            .st-emotion-cache-13ln4jf, .st-emotion-cache-1y4p8pa, .st-emotion-cache-ue6h4q, .st-emotion-cache-1avcm0n, .st-emotion-cache-12fmjuu {{
-                background:transparent !important; box-shadow:none !important;
-            }}
-               /* Remove default padding that might show white */
-                div.block-container {{ padding-bottom: 0.5rem !important; }}
-               /* Chat input internal container adjustments */
-                div[data-testid="stChatInput"] > div:first-child {{ background:transparent !important; }}
-                /* Remove residual border or outline from the wrapper */
-                div[data-testid="stChatInput"] div[role="textbox"] {{ background:transparent !important; }}
-            /* Input styling */
-            div[data-testid="stChatInput"] textarea {{
-                    background: rgba(255,255,255,0.32) !important; backdrop-filter: blur(14px) saturate(1.4);
-                    border:1px solid rgba(255,255,255,0.55) !important; border-radius:32px !important; padding:10px 16px !important; font-size:0.95rem;
-            }}
-            div[data-testid="stChatInput"] textarea:focus-visible {{ outline:2px solid rgba(255,255,255,0.75) !important; }}
-        </style>
-        <div class="corner-audio-wrapper">
-            <span class="label">Calming ambience</span>
-            <audio id="bg-music" src="data:audio/mp3;base64,{audio_b64}" autoplay loop controls></audio>
-            <span id="audio-fallback-msg" style="display:none;font-style:italic;font-size:0.55rem;color:#333;">Tap play</span>
-        </div>
-        <script>
-            (function(){{
-                const audioEl=document.getElementById('bg-music');
-                const msgEl=document.getElementById('audio-fallback-msg');
-                if(!audioEl) return; audioEl.volume=0.55; let tried=false;
-                function attempt(){{ if(tried) return; tried=true; const p=audioEl.play(); if(p&&p.then) p.catch(()=> msgEl.style.display='inline'); }}
-                setTimeout(attempt,180); audioEl.addEventListener('ended',()=>{{ audioEl.currentTime=0; audioEl.play(); }});
-            }})();
-        </script>
-        """
-    st.markdown(audio_html, unsafe_allow_html=True)
+            setTimeout(attempt,180); 
+        }})();
+    </script>
+    """
+else:
+    audio_html += """
+    <div class="corner-audio-wrapper">
+        <span class="label">Music unavailable</span>
+    </div>
+    """
+
+st.markdown(audio_html, unsafe_allow_html=True)
 
 # Title and description
 st.markdown(
@@ -188,16 +217,27 @@ if not api_key:
 
 # Persona system prompt
 SYSTEM_PROMPT = (
-    "Act as an empathetic psychologist providing supportive, insightful, and non-judgmental guidance in every response. "
-    "Acknowledge the user's feelings, validate their emotional experience, ask gentle open-ended questions to deepen reflection, "
-    "and suggest one or two small, compassionate self-care steps. Keep language warm, grounded, and empowering. "
-    "If you detect signs of serious distress, self-harm, or risk, gently encourage seeking professional help or trusted support. "
-    "Do not be clinical; be human-centered, calming, and hopeful. Avoid overwhelming lists. "
-    "Always end EXACTLY ONE concise, gentle, open reflective question (no multiple questions, no numbered list)."
+    "Act as a deeply calming, nurturing presence who offers pure comfort and understanding. "
+    "When someone is overwhelmed, stressed, or struggling, your role is to be a soothing companion, not an interviewer. "
+    "COMFORT FIRST: Always acknowledge their feelings with deep validation. Use phrases like 'I'm here with you,' "
+    "'It's completely understandable to feel this way,' 'You're not alone in this,' or 'What you're experiencing makes complete sense.' "
+    "SOOTHING PRESENCE: Offer gentle reassurance and normalize their experience. Remind them they're safe in this moment. "
+    "THOUGHTFUL QUESTIONS: Always end each response with exactly ONE gentle, caring question that invites continuation. "
+    "Choose questions that match the person's emotional state and current needs. Examples: "
+    "For overwhelm: 'What would help you feel most supported right now?' or 'How are you breathing in this moment?' "
+    "For sadness: 'What does your heart need to hear today?' or 'How can you be gentle with yourself right now?' "
+    "For uncertainty: 'What feels most true for you in this moment?' or 'What would it be like to trust yourself here?' "
+    "For general sharing: 'What's stirring in your heart as we talk?' or 'How does this land with you?' "
+    "GENTLE APPROACH: Even when asking questions, maintain a soft, non-demanding tone. The question should feel like "
+    "a caring invitation rather than pressure to perform or analyze. "
+    "HEALING TONE: Be like a warm, understanding friend who is genuinely curious about their inner world. "
+    "Focus on their feelings, needs, and gentle self-discovery. "
+    "If you detect serious distress or risk, gently encourage professional support while maintaining your caring presence."
 )
 
-# Initialize OpenAI client
-client = OpenAI(base_url=os.getenv("OPENAI_BASE_URL"), api_key=api_key)
+# Initialize OpenAI-compatible client
+base_url = os.getenv("OPENAI_BASE_URL")
+client = OpenAI(base_url=base_url, api_key=api_key)
 
 #############################
 # Helpers
@@ -206,13 +246,47 @@ def wants_tarot(text: str) -> bool:
     if not text:
         return False
     t = text.lower().strip()
-    triggers = [
+    
+    # Direct tarot requests
+    tarot_triggers = [
         "tarot", "tarot please", "tarot reading", "card reading", "draw card", "draw cards",
         "draw card for me", "draw cards for me", "pull a card", "pull cards", "pull three cards",
         "give me a reading", "i want a reading", "reading please", "cards please", "show me cards",
-        "show me the cards", "can you draw cards", "can you pull cards", "tarot now", "need guidance"
+        "show me the cards", "can you draw cards", "can you pull cards", "tarot now", "need guidance",
+        "new reading", "fresh reading", "new cards", "different cards", "another reading"
     ]
-    return any(phrase in t for phrase in triggers)
+    
+    # Check for positive responses to tarot offers (look at recent assistant message)
+    positive_responses = ["yes", "yeah", "sure", "okay", "ok", "please", "that would help", "i would like that"]
+    
+    # Check if we recently offered tarot and user is responding positively
+    if 'messages' in st.session_state and len(st.session_state.messages) >= 1:
+        last_assistant = None
+        for msg in reversed(st.session_state.messages):
+            if msg.get("role") == "assistant":
+                last_assistant = msg.get("content", "").lower()
+                break
+        
+        if last_assistant and "draw some cards" in last_assistant:
+            # User is likely responding to our tarot offer
+            if any(pos in t for pos in positive_responses) and len(t.split()) <= 5:
+                return True
+    
+    return any(phrase in t for phrase in tarot_triggers)
+
+
+def wants_new_reading(text: str) -> bool:
+    """Check if user specifically wants a new/fresh reading (not just tarot)"""
+    if not text:
+        return False
+    t = text.lower().strip()
+    
+    new_reading_triggers = [
+        "new reading", "fresh reading", "new cards", "different cards", "another reading",
+        "draw new cards", "pull new cards", "start over", "new tarot reading"
+    ]
+    
+    return any(phrase in t for phrase in new_reading_triggers)
 
 
 def render_cards(selected_cards):
@@ -261,9 +335,54 @@ def render_cards_simple(selected_cards):
     for col, card_file in zip(cols, selected_cards):
         card_image_path = os.path.join(CARD_IMAGES_PATH, card_file)
         try:
-            col.image(card_image_path, use_column_width=True)
+            col.image(card_image_path, width="stretch")
         except Exception:
             col.write("[image missing]")
+
+
+def create_cards_html(selected_cards):
+    """Create HTML representation of cards that can be embedded in chat messages."""
+    if not selected_cards:
+        return ""
+    
+    def _mime_for(fname: str) -> str:
+        low = fname.lower()
+        if low.endswith('.png'): return 'image/png'
+        if low.endswith('.jpg') or low.endswith('.jpeg'): return 'image/jpeg'
+        if low.endswith('.webp'): return 'image/webp'
+        return 'image/png'
+    
+    cards_html = '<div style="display: flex; justify-content: center; gap: 20px; margin: 15px 0; flex-wrap: wrap;">'
+    
+    for card_file in selected_cards:
+        card_image_path = os.path.join(CARD_IMAGES_PATH, card_file)
+        try:
+            with open(card_image_path, "rb") as image_file:
+                encoded_image = base64.b64encode(image_file.read()).decode()
+            mime = _mime_for(card_file)
+            
+            # Extract card number from filename for display
+            card_number = ""
+            if "Tarot " in card_file:
+                parts = card_file.split()
+                for part in parts:
+                    if part.isdigit():
+                        card_number = part
+                        break
+            
+            cards_html += f'''
+                <div style="text-align: center; max-width: 150px;">
+                    <img src="data:{mime};base64,{encoded_image}" 
+                         style="width: 100%; max-width: 150px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);" 
+                         alt="Tarot card {card_number}">
+                    <div style="margin-top: 5px; font-size: 0.9em; color: #666;">{card_number}</div>
+                </div>
+            '''
+        except Exception:
+            cards_html += '<div style="text-align: center; max-width: 150px; color: #999;">[Card image unavailable]</div>'
+    
+    cards_html += '</div>'
+    return cards_html
 
 
 def generate_tarot_reflection(card_summaries):
@@ -297,12 +416,28 @@ def get_recent_user_context(limit_chars: int = 1200, max_messages: int = 12) -> 
 
 
 def generate_contextual_tarot_reflection(card_summaries, conversation_context: str):
-    base_instruction = (
-        "Integrate the symbolic themes of the drawn tarot cards with the user's prior sharings. "
-        "Draw subtle emotional and narrative threads without repeating the user's text verbatim. "
-        "Offer 1-2 gentle reframing insights and a grounded micro-step. Avoid deterministic fortune-telling. "
-        "End with exactly one gentle reflective question inviting the user to share or notice something (do not add extra commentary after the question)."
-    )
+    # Check if user seems overwhelmed from context
+    overwhelm_indicators = ['overwhelm', 'stress', 'too much', 'a lot of questions', 'too many', 'anxious', 'struggling']
+    is_overwhelmed = any(indicator in conversation_context.lower() for indicator in overwhelm_indicators)
+    
+    if is_overwhelmed:
+        base_instruction = (
+            "Create a very gentle, soothing reflection that weaves the tarot card meanings with compassion and simplicity. "
+            "Focus on comfort and validation rather than deep exploration. Use calm, reassuring language. "
+            "Draw simple, supportive connections between the cards and their journey. Offer one gentle affirmation or insight. "
+            "Suggest one small, comforting action if appropriate. Avoid fortune-telling and overwhelming details. "
+            "End with ONE very gentle, supportive question like 'What would help you feel most held right now?' or 'How can you be extra gentle with yourself today?' "
+            "Your tone should feel like a soothing, caring presence offering pure comfort."
+        )
+    else:
+        base_instruction = (
+            "Create a deeply empathetic, heart-centered reflection that weaves the tarot card meanings with the user's emotional journey. "
+            "Begin with genuine acknowledgment of what they're experiencing. Use warm, validating language that makes them feel seen and understood. "
+            "Draw meaningful connections between the cards and their inner world without being prescriptive. Offer gentle insights that honor their wisdom. "
+            "Suggest one small, nurturing action they could take. Avoid fortune-telling; focus on empowerment and self-compassion. "
+            "End with ONE caring question that invites deeper reflection, such as 'What part of this reading speaks most deeply to you?' or 'How do these messages want to guide you forward?' "
+            "Your tone should feel like a wise, loving friend offering gentle guidance."
+        )
     prompt = (
         f"User context (recent feelings & concerns):\n{conversation_context}\n\n"
         f"Card meanings (raw): {' '.join(card_summaries)}\n\n"
@@ -349,6 +484,45 @@ def build_roles_for_cards(cards: list) -> list:
     return out
 
 
+def should_offer_tarot_reading() -> bool:
+    """Determine if we should proactively suggest a tarot reading based on conversation context."""
+    if 'messages' not in st.session_state:
+        return False
+    
+    user_messages = [m for m in st.session_state.messages if m.get("role") == "user"]
+    assistant_messages = [m for m in st.session_state.messages if m.get("role") == "assistant"]
+    
+    # Don't offer if we just did a tarot reading or are currently showing cards
+    if st.session_state.get('tarot_phase') not in ['idle', 'showing_cards']:
+        return False
+    
+    # Check if we recently did a tarot reading (last 6 messages)
+    recent_messages = st.session_state.messages[-6:] if len(st.session_state.messages) >= 6 else st.session_state.messages
+    has_recent_tarot = any("cards" in m.get("content", "").lower() and "drawn" in m.get("content", "").lower() 
+                          for m in recent_messages if m.get("role") == "assistant")
+    
+    if has_recent_tarot:
+        return False
+    
+    # Offer after 3-4 user exchanges and detect emotional content
+    if len(user_messages) >= 3:
+        # Look for emotional keywords in recent user messages
+        recent_user_text = " ".join([m["content"].lower() for m in user_messages[-3:]])
+        emotional_triggers = [
+            'feel', 'feeling', 'emotions', 'sad', 'worried', 'anxious', 'confused', 'lost', 
+            'stuck', 'overwhelmed', 'stressed', 'uncertain', 'struggling', 'difficult',
+            'hard', 'tough', 'challenge', 'problem', 'issue', 'help', 'guidance',
+            'direction', 'clarity', 'insight', 'understand', 'figure out'
+        ]
+        
+        emotional_content = sum(1 for trigger in emotional_triggers if trigger in recent_user_text)
+        
+        # Offer if there's emotional content and we haven't offered recently
+        return emotional_content >= 2
+    
+    return False
+
+
 # Ensure unique keys for 'chat_input' elements
 if 'overlay_counter' not in st.session_state:
     st.session_state.overlay_counter = 0  # track number of mystical overlays shown
@@ -369,49 +543,95 @@ if st.session_state.conversation_stage >= 1:
         st.session_state.messages.append({"role": "user", "content": user_input})
         st.chat_message("user").write(user_input)
         if wants_tarot(user_input):
-            # Prepare overlay phase
-            all_files = [f for f in os.listdir(CARD_IMAGES_PATH) if f.lower().endswith(('.png','.jpg','.jpeg','.webp'))]
-            if len(all_files) < 3:
-                st.error("Not enough card image files found in Card directory (need at least 3).")
+            # Only select new cards if we don't already have an active reading OR user specifically wants new reading
+            if (st.session_state.tarot_phase == 'idle' or 
+                not st.session_state.get('selected_cards') or 
+                wants_new_reading(user_input)):
+                # Prepare overlay phase - reset previous reading state
+                all_files = [f for f in os.listdir(CARD_IMAGES_PATH) if f.lower().endswith(('.png','.jpg','.jpeg','.webp'))]
+                if len(all_files) < 3:
+                    st.error("Not enough card image files found in Card directory (need at least 3).")
+                else:
+                    st.session_state.selected_cards = random.sample(all_files, 3)
+                st.session_state.selected_card_roles = build_roles_for_cards(st.session_state.selected_cards)
+                st.session_state.overlay_counter += 1
+                st.session_state.overlay_start_time = time.time()
+                st.session_state.tarot_phase = 'overlay'
+                st.session_state.tarot_reveal_done = False
+                ack = (
+                    "Of course. Let's slow the space for a moment while I draw three cards for you... Allow the atmosphere to settle."
+                )
+                st.chat_message("assistant").write(ack)
+                st.session_state.messages.append({"role": "assistant", "content": ack})
             else:
-                st.session_state.selected_cards = random.sample(all_files, 3)
-            st.session_state.selected_card_roles = build_roles_for_cards(st.session_state.selected_cards)
-            st.session_state.overlay_counter += 1
-            st.session_state.overlay_start_time = time.time()
-            st.session_state.tarot_phase = 'overlay'
-            st.session_state.tarot_reveal_done = False
-            ack = (
-                "Of course. Let's slow the space for a moment while I draw three cards for you... Allow the atmosphere to settle."
-            )
-            st.chat_message("assistant").write(ack)
-            st.session_state.messages.append({"role": "assistant", "content": ack})
+                # Cards are already drawn, just acknowledge the request
+                if st.session_state.tarot_phase == 'showing_cards':
+                    ack = "The cards are already here with us. Feel free to continue reflecting on their message, or let me know if you'd like a fresh reading."
+                    st.chat_message("assistant").write(ack)
+                    st.session_state.messages.append({"role": "assistant", "content": ack})
         else:
+            # Check if we should proactively offer tarot reading
+            offer_tarot = should_offer_tarot_reading()
+            
+            # Create enhanced system prompt if offering tarot
+            current_system_prompt = SYSTEM_PROMPT
+            if offer_tarot:
+                current_system_prompt += (
+                    " At the end of your response, after your reflective question, "
+                    "add a gentle offer: 'Would you like me to draw some cards for additional reflection on what you're experiencing?'"
+                )
+            
             # Continue normal conversation
-            response = client.chat.completions.create(
-                model="mistralai/mistral-small-24b-instruct-2501:free",
-                messages=[{"role": "system", "content": SYSTEM_PROMPT}] + st.session_state.messages,
-                stream=True,
-            )
+            try:
+                # Allow overriding model via env; otherwise use a reasonable free model
+                model = os.getenv("MODEL", "mistralai/mistral-small-24b-instruct-2501:free")
+                response = client.chat.completions.create(
+                    model=model,
+                    messages=[{"role": "system", "content": current_system_prompt}] + st.session_state.messages,
+                    stream=True,
+                )
 
-            msg = ""
+                # Collect streamed content without using globals
+                parts = []
 
-            def stream_response():
-                global msg
-                for chunk in response:
-                    part = chunk.choices[0].delta.content
-                    if part:
-                        msg += part
-                        yield part
+                def stream_response():
+                    for chunk in response:
+                        part = getattr(chunk.choices[0].delta, "content", None)
+                        if part:
+                            parts.append(part)
+                            yield part
 
-            st.chat_message("assistant").write_stream(stream_response)
-            st.session_state.messages.append({"role": "assistant", "content": msg})
+                st.chat_message("assistant").write_stream(stream_response)
+                msg = "".join(parts)
+                st.session_state.messages.append({"role": "assistant", "content": msg})
+            except Exception as e:
+                # Handle API errors gracefully
+                if "rate limit" in str(e).lower() or "429" in str(e):
+                    error_msg = (
+                        "I'm experiencing some temporary limitations with my responses right now. "
+                        "This usually means we've reached the daily limit for free API requests. "
+                        "Would you like to try again later, or is there anything I can help you with using the tarot cards instead?"
+                    )
+                elif "401" in str(e) or "unauthorized" in str(e).lower():
+                    error_msg = (
+                        "There seems to be an authentication issue. Please check that your API key is correctly set up. "
+                        "In the meantime, I can still help you with tarot card readings."
+                    )
+                else:
+                    error_msg = (
+                        f"I'm experiencing some technical difficulties right now ({str(e)[:100]}...), but I'm still here with you. "
+                        "Would you like to try a tarot reading, or shall we take a moment together?"
+                    )
+                
+                st.chat_message("assistant").write(error_msg)
+                st.session_state.messages.append({"role": "assistant", "content": error_msg})
 
 # Add CSS animations for Tarot card appearance effects
 st.markdown(
     """
     <style>
-    .tarot-row {display:flex;justify-content:center;align-items:flex-start;gap:40px;margin:12px 0 6px 0;perspective:1200px;flex-wrap:nowrap;}
-    .tarot-card {width:180px;height:295px;position:relative;opacity:0;animation:cardEnter .9s cubic-bezier(.25,.8,.3,1) forwards;flex:0 0 auto;}
+    .tarot-row {display:flex;justify-content:center;align-items:flex-start;gap:40px;margin:12px 0 6px 0;perspective:1200px;flex-wrap:nowrap;position:relative;z-index:15;}
+    .tarot-card {width:180px;height:295px;position:relative;opacity:0;animation:cardEnter .9s cubic-bezier(.25,.8,.3,1) forwards;flex:0 0 auto;z-index:16;}
     .tarot-card:nth-child(1){animation-delay:.2s;}
     .tarot-card:nth-child(2){animation-delay:.4s;}
     .tarot-card:nth-child(3){animation-delay:.6s;}
@@ -482,12 +702,18 @@ elif st.session_state.tarot_phase == 'reveal' and not st.session_state.tarot_rev
         # Ensure roles exist
         if not st.session_state.get('selected_card_roles') or len(st.session_state.selected_card_roles) != len(selected_cards):
             st.session_state.selected_card_roles = build_roles_for_cards(selected_cards)
-        # Use simpler reliable rendering for now
-        render_cards_simple(selected_cards)
-        advice = (
-            "I have gently drawn three cards for you. Take a slow breath and just notice what sensations or emotions arise as you look at them. "
-            "Here is a soft reflection on their combined energies:"
+        # Display intro message
+        intro_msg = (
+            "I have gently drawn three cards for you. Take a slow breath and just notice what sensations or emotions arise as you look at them."
         )
+        st.chat_message("assistant").write(intro_msg)
+        st.session_state.messages.append({"role": "assistant", "content": intro_msg})
+        
+        # Display cards using column layout
+        render_cards_simple(selected_cards)
+        
+        # Prepare main advice content
+        advice = "Here is a soft reflection on their combined energies:"
         card_summaries = []
         for idx, card_name in enumerate(selected_cards):
             card_title = re.sub(r"Tarot \d+ ", "", card_name.split(".")[0]).strip()
@@ -508,50 +734,167 @@ elif st.session_state.tarot_phase == 'reveal' and not st.session_state.tarot_rev
         st.chat_message("assistant").write(advice)
         st.session_state.messages.append({"role": "assistant", "content": advice})
         follow_up = (
-            "As you sit with this reflection, what feelings or bodily sensations are present right now? "
-            "You can share a word, an image, or anything that arises. I'm here with you."
+            "Take a gentle breath as you let this settle in your heart. I can sense there's so much wisdom within you. "
+            "What resonates most deeply? What wants to be acknowledged or honored right now? "
+            "Share whatever feels alive for you - a feeling, a memory, even just a single word. I'm here, holding space with you."
         )
         st.chat_message("assistant").write(follow_up)
         st.session_state.messages.append({"role": "assistant", "content": follow_up})
     st.session_state.tarot_reveal_done = True
-    st.session_state.tarot_phase = 'done'
+    st.session_state.tarot_phase = 'idle'  # Return to idle state - cards are now part of chat history
+
+# Cards are now displayed after conversation history (above) - no need to render here
 
 
-# --- Final global CSS override to eliminate persistent white bar at bottom ---
-# Placed at end so it wins cascade order.
+# --- Enhanced CSS to make white areas around chat transparent ---
 st.markdown(
     """
     <style>
-    /* Minimal safe overrides */
-    [data-testid="stBottomBlockContainer"] { background: transparent !important; }
-    [data-testid="stChatInput"] { background: transparent !important; }
-    [data-testid="stChatInput"] textarea { background: rgba(255,255,255,0.35)!important; }
-    .missing-img {width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:0.8rem;color:#ccc;background:rgba(255,255,255,0.05);}
-    /* Optional: float chat input a bit higher and remove large empty white zone */
-    .floating-chat-wrapper {position:fixed;left:50%;bottom:18px;transform:translateX(-50%);width: min(720px,90%);z-index:1200;}
-    .floating-chat-wrapper [data-testid="stChatInput"] {padding-bottom:0 !important;}
-    body {margin:0 !important;}
+    /* Aggressively target all potential white containers */
+    [data-testid="stBottomBlockContainer"], 
+    [data-testid="stVerticalBlock"], 
+    [data-testid="stMainBlock"],
+    .block-container,
+    [data-testid="stAppViewContainer"] > div,
+    [data-testid="stDecoration"] { 
+        background: transparent !important; 
+        padding-bottom: 0 !important;
+    }
+    
+    /* Chat input container - make transparent but keep the input box visible */
+    [data-testid="stChatInput"] { 
+        background: transparent !important; 
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    
+    /* Style only the actual textarea (chat box) */
+    [data-testid="stChatInput"] textarea { 
+        background: rgba(255,255,255,0.32) !important; 
+        backdrop-filter: blur(14px) saturate(1.4) !important;
+        border: 1px solid rgba(255,255,255,0.55) !important; 
+        border-radius: 32px !important; 
+        padding: 10px 16px !important; 
+        font-size: 0.95rem !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+    }
+    
+    /* Chat input focus state */
+    [data-testid="stChatInput"] textarea:focus-visible { 
+        outline: 2px solid rgba(255,255,255,0.75) !important; 
+    }
+    
+    /* Remove any white background from parent containers */
+    [data-testid="stChatInput"] > div { background: transparent !important; }
+    
+    /* Force body and main containers to be transparent */
+    body { margin: 0 !important; }
+    .main { background: transparent !important; }
+    
+    /* Missing image placeholder */
+    .missing-img {
+        width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+        font-size:0.8rem;color:#ccc;background:rgba(255,255,255,0.05);
+    }
+    
+    /* Remove any residual white backgrounds */
+    div[style*="background-color: rgb(255, 255, 255)"] { background-color: transparent !important; }
+    div[style*="background: rgb(255, 255, 255)"] { background: transparent !important; }
+    
+    /* Targeted approach - only containers inside content area, not main app */
+    .main [data-testid="column"], 
+    .main [data-testid="stVerticalBlock"]:not(.stApp > [data-testid="stVerticalBlock"]), 
+    .main [data-testid="stHorizontalBlock"],
+    .main [data-testid="stImage"],
+    .main [data-testid="stImageContainer"],
+    .main .stMarkdown:not(.stApp > .stMarkdown),
+    .main .element-container {
+        background: transparent !important;
+        background-color: transparent !important;
+    }
+    
+    /* Preserve .stApp background but clear inner containers */
+    .stApp { 
+        /* Keep original background image */
+    }
+    
+    /* Only target image containers that are white, not all images */
+    [data-testid="column"] img {
+        background: transparent !important;
+    }
     </style>
     <script>
-    // JS walk up parents to clear any stray white backgrounds
-    window.addEventListener('load', () => {
-        const ci = document.querySelector('[data-testid="stChatInput"]');
-        if(ci){
-           let el = ci; let depth = 0;
-           while(el && depth < 6){
-              if(getComputedStyle(el).backgroundColor === 'rgb(255, 255, 255)'){
-                 el.style.background = 'transparent';
-              }
-              el = el.parentElement; depth++;
-           }
-           // Optionally wrap for floating effect
-           if(!ci.closest('.floating-chat-wrapper')){
-              const wrap = document.createElement('div');
-              wrap.className = 'floating-chat-wrapper';
-              ci.parentElement.insertBefore(wrap, ci);
-              wrap.appendChild(ci);
-           }
+    // Enhanced JS to recursively clear white backgrounds
+    function clearWhiteBackgrounds() {
+        // Find chat input and clear parent backgrounds
+        const chatInput = document.querySelector('[data-testid="stChatInput"]');
+        if (chatInput) {
+            let current = chatInput;
+            let depth = 0;
+            
+            // Walk up the DOM tree and clear white backgrounds
+            while (current && depth < 10) {
+                const computedStyle = getComputedStyle(current);
+                const bgColor = computedStyle.backgroundColor;
+                
+                if (bgColor === 'rgb(255, 255, 255)' || bgColor === 'rgba(255, 255, 255, 1)') {
+                    current.style.backgroundColor = 'transparent';
+                    current.style.background = 'transparent';
+                }
+                
+                current = current.parentElement;
+                depth++;
+            }
         }
+        
+        // Target only containers inside .main, preserve .stApp background
+        const mainElement = document.querySelector('.main');
+        if (mainElement) {
+            const streamlitContainers = mainElement.querySelectorAll(
+                '[data-testid="column"], [data-testid="stVerticalBlock"], [data-testid="stHorizontalBlock"], ' +
+                '.stMarkdown, .element-container, [data-testid="stImage"], [data-testid="stImageContainer"]'
+            );
+            
+            streamlitContainers.forEach(el => {
+                const computedStyle = getComputedStyle(el);
+                if (computedStyle.backgroundColor === 'rgb(255, 255, 255)' || 
+                    computedStyle.backgroundColor === 'rgba(255, 255, 255, 1)') {
+                    el.style.backgroundColor = 'transparent';
+                    el.style.background = 'transparent';
+                }
+            });
+        }
+        
+        // Also clear any elements with white inline styles
+        const whiteElements = document.querySelectorAll('div[style*="background"], div[style*="backgroundColor"]');
+        whiteElements.forEach(el => {
+            const style = el.style;
+            if (style.backgroundColor === 'rgb(255, 255, 255)' || 
+                style.background === 'rgb(255, 255, 255)' ||
+                style.backgroundColor === '#ffffff' ||
+                style.background === '#ffffff') {
+                el.style.backgroundColor = 'transparent';
+                el.style.background = 'transparent';
+            }
+        });
+    }
+    
+    // Run on load and periodically to catch dynamic changes
+    window.addEventListener('load', clearWhiteBackgrounds);
+    setTimeout(clearWhiteBackgrounds, 100);
+    setTimeout(clearWhiteBackgrounds, 500);
+    setTimeout(clearWhiteBackgrounds, 1000);
+    
+    // Observer for dynamic content changes
+    const observer = new MutationObserver(() => {
+        setTimeout(clearWhiteBackgrounds, 50);
+    });
+    
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['style']
     });
     </script>
     """,
