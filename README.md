@@ -6,7 +6,28 @@
 	<sub>Reflective chat with optional tarot insights, built with Streamlit.</sub>
 </div>
 
+
 A Streamlit app that offers a gentle, reflective conversation experience and optional tarot card draws. It uses an OpenAI-compatible API client, and supports streaming responses plus animated tarot card reveal.
+
+<div align="center">
+
+	<!-- Watch demo badge -->
+	<a href="./Demo Video.mp4">
+		<img src="https://img.shields.io/badge/Watch%20the%20demo-%F0%9F%8E%A5-blue" alt="Watch the demo" />
+	</a>
+  
+	<br/>
+	<br/>
+
+	<!-- Clickable GIF preview with JPG fallback (GIF optional) -->
+	<a href="./Demo Video.mp4">
+		<picture>
+			<source srcset="./Demo-Preview.gif" type="image/gif" />
+			<img src="./Tarot AI Healing Chatbot.jpg" alt="Demo preview (click to watch)" width="720" />
+		</picture>
+	</a>
+
+</div>
 
 ## Features
 - Conversational assistant with reflective, supportive tone
