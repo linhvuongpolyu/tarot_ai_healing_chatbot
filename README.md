@@ -1,9 +1,9 @@
 # Tarot AI Healing Chatbot
 
 <div align="center">
-	<img src="./Tarot AI Healing Chatbot.jpg" alt="Tarot AI Healing Chatbot UI" width="720" />
-	<br/>
-	<sub>Reflective chat with optional tarot insights, built with Streamlit.</sub>
+  <img src="./Tarot AI Healing Chatbot.jpg" alt="Tarot AI Healing Chatbot UI" width="720" />
+  <br/>
+  <sub>Reflective chat with optional tarot insights, built with Streamlit.</sub>
 </div>
 
 
@@ -11,21 +11,21 @@ A Streamlit app that offers a gentle, reflective conversation experience and opt
 
 <div align="center">
 
-	<!-- Watch demo badge -->
-	<a href="./Demo Video.mp4">
-		<img src="https://img.shields.io/badge/Watch%20the%20demo-%F0%9F%8E%A5-blue" alt="Watch the demo" />
-	</a>
-  
-	<br/>
-	<br/>
+  <!-- Watch demo badge -->
+  <a href="./Demo Video.mp4">
+    <img src="https://img.shields.io/badge/Watch%20the%20demo-%F0%9F%8E%A5-blue" alt="Watch the demo" />
+  </a>
 
-	<!-- Clickable GIF preview with JPG fallback (GIF optional) -->
-	<a href="./Demo Video.mp4">
-		<picture>
-			<source srcset="./Demo-Preview.gif" type="image/gif" />
-			<img src="./Tarot AI Healing Chatbot.jpg" alt="Demo preview (click to watch)" width="720" />
-		</picture>
-	</a>
+  <br/>
+  <br/>
+
+  <!-- Clickable GIF preview with JPG fallback (GIF optional) -->
+  <a href="./Demo Video.mp4">
+    <picture>
+      <source srcset="./Demo-Preview.gif" type="image/gif" />
+      <img src="./Tarot AI Healing Chatbot.jpg" alt="Demo preview (click to watch)" width="720" />
+    </picture>
+  </a>
 
 </div>
 
@@ -53,7 +53,8 @@ See `.env.example` for all keys. At minimum you need:
 ### Quickstart (Windows PowerShell)
 ```powershell
 # Optional: create venv
-python -m venv .venv; . .venv\Scripts\Activate.ps1
+python -m venv .venv
+. .venv\Scripts\Activate.ps1
 
 # Install deps
 pip install -r requirements.txt
@@ -82,21 +83,25 @@ README.md              # This file
 ## License
 See `LICENSE`.
 
-## Demo
-You can watch a short demo of the app here:
-
-- Demo Video.mp4
-
-Notes:
-- GitHub web UI will serve this file for download or in-browser playback depending on your browser.
-- If embedding is needed elsewhere (e.g., a website), you can use a simple HTML snippet like below:
+## Demo (details)
+- The top of this README links to ./Demo Video.mp4. Depending on your browser, GitHub will either stream it inline or download it.
+- To embed the video on a website, you can use:
 
 ```html
 <video src="./Demo Video.mp4" controls width="720" poster="./Tarot AI Healing Chatbot.jpg"></video>
 ```
 
-Alternatively, if you upload the video to YouTube, add a link like:
+- If you publish the video on YouTube, simply link to it, e.g.:
 
 ```
 https://youtu.be/your-video-id
+```
+
+### Optional: Create the GIF preview
+If you want to generate Demo-Preview.gif from the MP4, install ffmpeg and run something like:
+
+```powershell
+# Install or use an existing ffmpeg installation
+# Example conversion (first 12s, scaled to 720px width)
+ffmpeg -y -i "Demo Video.mp4" -t 12 -vf "fps=12,scale=720:-1:flags=lanczos" -loop 0 Demo-Preview.gif
 ```
