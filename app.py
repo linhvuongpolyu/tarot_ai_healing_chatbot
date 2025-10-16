@@ -496,6 +496,11 @@ def should_offer_tarot_reading() -> bool:
     if st.session_state.get('tarot_phase') not in ['idle', 'showing_cards']:
         return False
     
+    # Cooldown so we don't offer too frequently (minimum gap: 6 messages)
+    last_offer_idx = st.session_state.get('last_tarot_offer_at')
+    if isinstance(last_offer_idx, int) and (len(st.session_state.messages) - last_offer_idx) < 6:
+        return False
+
     # Check if we recently did a tarot reading (last 6 messages)
     recent_messages = st.session_state.messages[-6:] if len(st.session_state.messages) >= 6 else st.session_state.messages
     has_recent_tarot = any("cards" in m.get("content", "").lower() and "drawn" in m.get("content", "").lower() 
@@ -504,22 +509,10 @@ def should_offer_tarot_reading() -> bool:
     if has_recent_tarot:
         return False
     
-    # Offer after 3-4 user exchanges and detect emotional content
+    # Offer after 3 user exchanges to keep flow gentle and timely
     if len(user_messages) >= 3:
-        # Look for emotional keywords in recent user messages
-        recent_user_text = " ".join([m["content"].lower() for m in user_messages[-3:]])
-        emotional_triggers = [
-            'feel', 'feeling', 'emotions', 'sad', 'worried', 'anxious', 'confused', 'lost', 
-            'stuck', 'overwhelmed', 'stressed', 'uncertain', 'struggling', 'difficult',
-            'hard', 'tough', 'challenge', 'problem', 'issue', 'help', 'guidance',
-            'direction', 'clarity', 'insight', 'understand', 'figure out'
-        ]
-        
-        emotional_content = sum(1 for trigger in emotional_triggers if trigger in recent_user_text)
-        
-        # Offer if there's emotional content and we haven't offered recently
-        return emotional_content >= 2
-    
+        return True
+
     return False
 
 
@@ -580,6 +573,8 @@ if st.session_state.conversation_stage >= 1:
                     " At the end of your response, after your reflective question, "
                     "add a gentle offer: 'Would you like me to draw some cards for additional reflection on what you're experiencing?'"
                 )
+                # Mark where we offered, so we can cooldown future offers
+                st.session_state.last_tarot_offer_at = len(st.session_state.messages)
             
             # Continue normal conversation
             try:
@@ -604,6 +599,13 @@ if st.session_state.conversation_stage >= 1:
                 st.chat_message("assistant").write_stream(stream_response)
                 msg = "".join(parts)
                 st.session_state.messages.append({"role": "assistant", "content": msg})
+
+                # Ensure the offer is visibly presented even if the model omitted it
+                if offer_tarot:
+                    offer_line = "Would you like me to draw some cards for additional reflection on what you're experiencing?"
+                    if offer_line.lower() not in msg.lower():
+                        st.chat_message("assistant").write(offer_line)
+                        st.session_state.messages.append({"role": "assistant", "content": offer_line})
             except Exception as e:
                 # Handle API errors gracefully
                 if "rate limit" in str(e).lower() or "429" in str(e):
