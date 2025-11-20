@@ -79,26 +79,3 @@ README.md              # This file
 
 ## License
 See `LICENSE`.
-
-## Demo (details)
-- The top of this README links to ./Demo Video.mp4. Depending on your browser, GitHub will either stream it inline or download it.
-- To embed the video on a website, you can use:
-
-```html
-<video src="./Demo Video.mp4" controls width="720" poster="./Tarot AI Healing Chatbot.jpg"></video>
-```
-
-- If you publish the video on YouTube, simply link to it, e.g.:
-
-```
-https://youtu.be/your-video-id
-```
-
-### Optional: Create the GIF preview
-If you want to generate Demo-Preview.gif from the MP4, install ffmpeg and run something like:
-
-```powershell
-# Install or use an existing ffmpeg installation
-# Example conversion (first 12s, scaled to 720px width)
-ffmpeg -y -i "Demo Video.mp4" -t 12 -vf "fps=12,scale=720:-1:flags=lanczos" -loop 0 Demo-Preview.gif
-```
